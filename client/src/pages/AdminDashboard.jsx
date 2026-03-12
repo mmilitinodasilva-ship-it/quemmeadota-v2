@@ -65,25 +65,25 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className="w-80 bg-white border-r border-gray-100 flex flex-col p-8 fixed h-full z-10 shadow-xl shadow-gray-200/50 overflow-y-auto no-scrollbar">
-        <div className="flex items-center gap-4 mb-16">
-          <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-2xl text-primary-dark shadow-lg shadow-primary/20">
-            <Heart className="w-7 h-7 fill-current" />
+      <aside className="w-64 bg-white border-r border-gray-100 flex flex-col p-6 fixed h-full z-10 shadow-xl shadow-gray-200/50 overflow-y-auto no-scrollbar">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-xl text-primary-dark shadow-lg shadow-primary/20">
+            <Heart className="w-6 h-6 fill-current" />
           </div>
           <div>
-            <h2 className="font-black text-xl text-primary-dark tracking-tight leading-none">Admin</h2>
-            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-1">Quem Me Adota</p>
+            <h2 className="font-black text-lg text-primary-dark tracking-tight leading-none">Admin</h2>
+            <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-1">Quem Me Adota</p>
           </div>
         </div>
 
-        <nav className="flex-grow space-y-4">
+        <nav className="flex-grow space-y-2">
           {menuItems.map((item) => (
             <Link 
               key={item.path}
               to={item.path}
-              className={`flex items-center gap-4 p-5 rounded-3xl font-bold transition-all transform hover:scale-105 active:scale-95 ${location.pathname === item.path ? 'bg-primary-dark text-white shadow-xl shadow-primary-dark/20' : 'text-gray-400 hover:text-primary-dark hover:bg-primary-light/50'}`}
+              className={`flex items-center gap-3 p-3 rounded-2xl font-bold text-sm transition-all transform hover:scale-105 active:scale-95 ${location.pathname === item.path ? 'bg-primary-dark text-white shadow-xl shadow-primary-dark/20' : 'text-gray-400 hover:text-primary-dark hover:bg-primary-light/50'}`}
             >
-              <item.icon className="w-6 h-6" />
+              <item.icon className="w-5 h-5" />
               <span>{item.label}</span>
             </Link>
           ))}
@@ -91,15 +91,15 @@ const AdminDashboard = () => {
 
         <button 
           onClick={logout}
-          className="flex items-center gap-4 p-5 rounded-3xl font-bold text-red-400 hover:bg-red-50 transition-all mt-auto"
+          className="flex items-center gap-3 p-3 rounded-2xl font-bold text-sm text-red-400 hover:bg-red-50 transition-all mt-auto"
         >
-          <LogOut className="w-6 h-6" />
+          <LogOut className="w-5 h-5" />
           <span>Sair do Painel</span>
         </button>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow ml-80 p-12">
+      <main className="flex-grow ml-64 p-12">
         <header className="flex justify-between items-center mb-16">
           <div>
             <h1 className="text-4xl font-black text-primary-dark mb-2">Bem-vindo, Admin! 👋</h1>

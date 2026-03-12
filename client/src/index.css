@@ -9,7 +9,7 @@
 }
 
 body {
-  @apply bg-[#faf0ef] text-gray-800 font-sans;
+  @apply bg-[#c5c3c3] text-gray-800 font-sans;
   -webkit-font-smoothing: antialiased;
 }
 

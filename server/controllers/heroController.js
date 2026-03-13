@@ -34,7 +34,7 @@ exports.updateHero = async (req, res) => {
     };
 
     if (req.file) {
-      heroData.imageUrl = `/uploads/${req.file.filename}`;
+      updateData.imageUrl = req.file.path;
     } else if (req.body.imageUrl) {
       heroData.imageUrl = req.body.imageUrl;
     }

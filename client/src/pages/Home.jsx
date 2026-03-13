@@ -3,6 +3,7 @@ import { Search, Heart, MapPin, ChevronRight, CheckCircle, ArrowRight, Shield, I
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useFavorites } from '../context/FavoriteContext';
+import { formatImageUrl } from '../utils/imageHelper';
 
 const API_URL = import.meta.env.VITE_API_URL || window.location.origin;
 
@@ -65,10 +66,9 @@ const Home = () => {
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
                 <img 
-                  src={heroData.imageUrl.startsWith('http') ? heroData.imageUrl : `${API_URL}${heroData.imageUrl}`} 
+                  src={formatImageUrl(heroData.imageUrl, API_URL)} 
                   alt="Happy Pet" 
                   className="w-full h-full object-cover" 
-                  referrerPolicy="no-referrer" 
                 />
               </div>
               {/* Floating Stats */}
@@ -178,10 +178,9 @@ const Home = () => {
                 <Link to={`/pets/${pet._id}`} className="flex flex-col h-full">
                   <div className="relative aspect-[4/5] overflow-hidden m-4 rounded-[32px]">
                     <img 
-                      src={pet.images[0].startsWith('http') ? pet.images[0] : `${API_URL}${pet.images[0]}`} 
+                      src={formatImageUrl(pet.images[0], API_URL)} 
                       alt={pet.name} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                      referrerPolicy="no-referrer"
                     />
                     <div className="absolute top-4 right-4">
                       <button 
@@ -239,10 +238,9 @@ const Home = () => {
             {ngos.map((ngo) => (
               <div key={ngo._id} className="group bg-gray-50/50 rounded-[40px] p-10 border border-gray-100 hover:bg-white hover:shadow-2xl transition-all text-center">
                 <img 
-                  src={ngo.logo.startsWith('http') ? ngo.logo : `${API_URL}${ngo.logo}`} 
+                  src={formatImageUrl(ngo.logo, API_URL)} 
                   className="w-24 h-24 rounded-3xl object-cover bg-white shadow-lg mx-auto mb-8 group-hover:scale-110 transition-transform" 
                   alt={ngo.name} 
-                  referrerPolicy="no-referrer" 
                 />
                 <h4 className="font-black text-2xl text-primary-dark mb-4">{ngo.name}</h4>
                 <p className="text-gray-500 mb-8 line-clamp-3 leading-relaxed">{ngo.description}</p>

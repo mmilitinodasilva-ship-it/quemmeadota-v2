@@ -4,6 +4,7 @@ import { Search, Filter, MapPin, Heart, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useFavorites } from '../context/FavoriteContext';
+import { formatImageUrl } from '../utils/imageHelper';
 
 const API_URL = import.meta.env.VITE_API_URL || window.location.origin;
 
@@ -145,10 +146,9 @@ const Pets = () => {
                   <Link to={`/pets/${pet._id}`} className="flex flex-col h-full">
                     <div className="relative aspect-[1/1] overflow-hidden m-4 rounded-[32px]">
                       <img 
-                        src={pet.images[0]?.startsWith('http') ? pet.images[0] : `${API_URL}${pet.images[0]}`} 
+                        src={formatImageUrl(pet.images[0], API_URL)} 
                         alt={pet.name} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                        referrerPolicy="no-referrer"
                       />
                       <div className="absolute top-4 right-4">
                         <button 

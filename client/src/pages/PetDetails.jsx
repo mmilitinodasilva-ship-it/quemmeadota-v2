@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 import { useFavorites } from '../context/FavoriteContext';
 import { useSocket } from '../context/SocketContext';
+import { formatImageUrl } from '../utils/imageHelper';
 
 const API_URL = import.meta.env.VITE_API_URL || window.location.origin;
 
@@ -139,10 +140,9 @@ const PetDetails = () => {
               className="aspect-square rounded-[60px] overflow-hidden shadow-2xl border-8 border-primary-light"
             >
               <img 
-                src={pet.images[activeImage]?.startsWith('http') ? pet.images[activeImage] : `${API_URL}${pet.images[activeImage]}`} 
+                src={formatImageUrl(pet.images[activeImage], API_URL)} 
                 alt={pet.name} 
                 className="w-full h-full object-cover" 
-                referrerPolicy="no-referrer"
               />
             </motion.div>
             <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
@@ -152,7 +152,7 @@ const PetDetails = () => {
                   onClick={() => setActiveImage(idx)}
                   className={`flex-shrink-0 w-24 h-24 rounded-3xl overflow-hidden border-4 transition-all ${activeImage === idx ? 'border-primary' : 'border-transparent opacity-60'}`}
                 >
-                  <img src={img.startsWith('http') ? img : `${API_URL}${img}`} alt={`${pet.name} ${idx}`} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  <img src={formatImageUrl(img, API_URL)} alt={`${pet.name} ${idx}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -253,7 +253,7 @@ const PetDetails = () => {
             
             {/* Responsible NGO */}
             <div className="pt-12 border-t border-gray-100 flex items-center gap-6">
-              <img src={pet.ngoId.logo} className="w-16 h-16 rounded-2xl object-cover bg-gray-50" alt={pet.ngoId.name} referrerPolicy="no-referrer" />
+              <img src={formatImageUrl(pet.ngoId.logo, API_URL)} className="w-16 h-16 rounded-2xl object-cover bg-gray-50" alt={pet.ngoId.name} />
               <div>
                 <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">ONG Responsável</p>
                 <h4 className="font-bold text-xl text-primary-dark">{pet.ngoId.name}</h4>

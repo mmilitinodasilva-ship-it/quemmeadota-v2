@@ -53,7 +53,7 @@ exports.createNGO = async (req, res) => {
     };
 
     if (file) {
-      ngoData.logo = `/uploads/${file.filename}`;
+      ngoData.logo = file.path;
     } else if (body.logo) {
       ngoData.logo = body.logo;
     }
@@ -93,7 +93,7 @@ exports.updateNGO = async (req, res) => {
     };
 
     if (file) {
-      ngoData.logo = `/uploads/${file.filename}`;
+      ngoData.logo = file.path;
     } else if (body.logo) {
       ngoData.logo = body.logo;
     }

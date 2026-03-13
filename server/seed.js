@@ -9,14 +9,21 @@ dotenv.config();
 
 const seedData = async () => {
   try {
+    console.log('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/quem-me-adota');
     console.log('🌱 Iniciando seed...');
+    console.log('URI used:', process.env.MONGODB_URI ? 'Atlas' : 'Local');
 
     // Clear existing data
+    console.log('🗑️ Deletando dados antigos...');
     await NGO.deleteMany({});
+    console.log('✅ NGOs deletadas');
     await Pet.deleteMany({});
+    console.log('✅ Pets deletados');
     await Admin.deleteMany({});
+    console.log('✅ Admins deletados');
     await HeroSection.deleteMany({});
+    console.log('✅ HeroSections deletados');
 
     // Create Admin
     const admin = new Admin({
@@ -83,6 +90,7 @@ const seedData = async () => {
         name: "Bento",
         species: "cachorro",
         gender: "macho",
+        color: "marrom e branco",
         age: "2 anos",
         size: "médio",
         healthCondition: "Saudável, castrado",
@@ -98,6 +106,7 @@ const seedData = async () => {
         name: "Luna",
         species: "gato",
         gender: "fêmea",
+        color: "tricolor",
         age: "6 meses",
         size: "pequeno",
         healthCondition: "Saudável, vermifugada",
@@ -113,6 +122,7 @@ const seedData = async () => {
         name: "Rex",
         species: "cachorro",
         gender: "macho",
+        color: "preto",
         age: "5 anos",
         size: "grande",
         healthCondition: "Excelente saúde",

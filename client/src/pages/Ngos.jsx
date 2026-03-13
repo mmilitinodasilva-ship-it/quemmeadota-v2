@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Globe, Instagram, Facebook, Heart, Info, Star } from 'lucide-react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { formatImageUrl } from '../utils/imageHelper';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -90,7 +91,7 @@ const Ngos = () => {
                     <Popup>
                       <div className="p-2 space-y-2">
                         <img 
-                          src={ngo.logo?.startsWith('http') ? ngo.logo : `${API_URL}${ngo.logo}`} 
+                          src={formatImageUrl(ngo.logo, API_URL)} 
                           className="w-12 h-12 rounded-lg object-cover mb-2" 
                           alt="" 
                         />
@@ -119,7 +120,7 @@ const Ngos = () => {
               <div className="flex items-center gap-6 mb-8">
                 <div className="w-24 h-24 rounded-3xl overflow-hidden border-4 border-gray-50 bg-white shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform">
                   <img 
-                    src={ngo.logo?.startsWith('http') ? ngo.logo : `${API_URL}${ngo.logo}`} 
+                    src={formatImageUrl(ngo.logo, API_URL)} 
                     className="w-full h-full object-cover" 
                     alt={ngo.name} 
                     referrerPolicy="no-referrer" 

@@ -38,7 +38,7 @@ exports.createPet = async (req, res) => {
     
     // Handle uploaded images
     if (req.files && req.files.length > 0) {
-      petData.images = req.files.map(file => `/uploads/${file.filename}`);
+      petData.images = req.files.map(file => file.path);
     } else if (typeof req.body.images === 'string') {
       petData.images = [req.body.images];
     }
@@ -62,7 +62,7 @@ exports.updatePet = async (req, res) => {
     
     let newImages = [];
     if (req.files && req.files.length > 0) {
-      newImages = req.files.map(file => `/uploads/${file.filename}`);
+      newImages = req.files.map(file => file.path);
     }
     
     // Always update images field if it's sent in the request (even if only existing ones are kept)

@@ -23,7 +23,7 @@ exports.createPost = async (req, res) => {
   try {
     const postData = { ...req.body };
     if (req.file) {
-      postData.image = `/uploads/${req.file.filename}`;
+      postData.image = req.file.path;
     }
     const post = new BlogPost(postData);
     const savedPost = await post.save();
@@ -37,7 +37,7 @@ exports.updatePost = async (req, res) => {
   try {
     const postData = { ...req.body };
     if (req.file) {
-      postData.image = `/uploads/${req.file.filename}`;
+      postData.image = req.file.path;
     }
     const post = await BlogPost.findByIdAndUpdate(req.params.id, postData, { new: true });
     if (!post) return res.status(404).json({ message: 'Post não encontrado' });

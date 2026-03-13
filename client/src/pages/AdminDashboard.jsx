@@ -12,6 +12,7 @@ import axios from 'axios';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
 import { useSocket } from '../context/SocketContext';
+import { formatImageUrl } from '../utils/imageHelper';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -417,7 +418,7 @@ const AdminPets = () => {
                 <tr key={pet._id} className="hover:bg-gray-50/30 transition-colors group">
                   <td className="px-10 py-6">
                     <div className="flex items-center gap-4">
-                      <img src={pet.images[0]?.startsWith('http') ? pet.images[0] : `${API_URL}${pet.images[0]}`} className="w-14 h-14 rounded-2xl object-cover" alt={pet.name} referrerPolicy="no-referrer" />
+                      <img src={formatImageUrl(pet.images[0], API_URL)} className="w-14 h-14 rounded-2xl object-cover" alt={pet.name} />
                       <div>
                         <p className="font-bold text-primary-dark text-lg leading-tight">{pet.name}</p>
                         <p className="text-sm text-gray-400 capitalize">{pet.species} • {pet.age}</p>
@@ -857,10 +858,9 @@ const AdminNgos = () => {
               <div key={ngo._id} className="group bg-gray-50/50 rounded-[40px] p-8 border border-gray-100 hover:bg-white hover:shadow-xl transition-all relative overflow-hidden">
                 <div className="flex items-center gap-4 mb-6">
                   <img 
-                    src={ngo.logo?.startsWith('http') ? ngo.logo : `${API_URL}${ngo.logo}`} 
+                    src={formatImageUrl(ngo.logo, API_URL)} 
                     className="w-16 h-16 rounded-2xl object-cover bg-white shadow-sm" 
                     alt={ngo.name} 
-                    referrerPolicy="no-referrer" 
                   />
                   <div>
                     <h3 className="font-bold text-primary-dark text-xl">{ngo.name}</h3>

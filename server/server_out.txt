@@ -1,0 +1,7 @@
+🚀 Servidor rodando na porta 5000
+--- SERVER READY ---
+✅ Conectado ao MongoDB
+🔌 Usuário conectado: Vzz_3jwo_ls8N4fZAAAB
+🔌 Usuário desconectado
+🔌 Usuário conectado: GsWBQMgb4JnY4vLkAAAD
+🔌 Usuário desconectado
